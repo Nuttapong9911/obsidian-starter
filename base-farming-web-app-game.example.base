@@ -1,0 +1,22 @@
+views:
+  - type: table
+    name: Notes
+    filters:
+      and:
+        - file.inFolder("Notes/farming-web-app-example")
+    groupBy:
+      property: type
+      direction: ASC
+    order:
+      - file.name
+      - type
+      - date
+  - type: cards
+    name: Glossary
+    filters:
+      or:
+        - type == "Keyword"
+        - type == "Microservice"
+    order:
+      - file.name
+      - type

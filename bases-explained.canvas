@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"c3c3c3c3c3c3c3c3","type":"group","x":-740,"y":470,"width":620,"height":850,"color":"4","label":"Notes view (table)"},
+		{"id":"c4c4c4c4c4c4c4c4","type":"group","x":40,"y":520,"width":620,"height":800,"color":"5","label":"Glossary view (cards)"},
+		{"id":"a1a1a1a1a1a1a1a1","type":"text","text":"# Farming Web App Game.base\n\nดูว่า 2 views ถูกสร้างยังไง — filter → order/group → ผลลัพธ์","x":-100,"y":-200,"width":700,"height":100},
+		{"id":"b2b2b2b2b2b2b2b2","type":"file","file":"base-farming-web-app-game.example.base","x":-100,"y":-60,"width":700,"height":340},
+		{"id":"e1e1e1e1e1e1e1e1","type":"text","text":"## Filter\n\n```yaml\nfilters:\n  or:\n    - 'type == \"Keyword\"'\n    - 'type == \"Microservice\"'\n```\n\nเอา index note ที่เป็น concept/service","x":70,"y":560,"width":560,"height":240},
+		{"id":"d1d1d1d1d1d1d1d1","type":"text","text":"## Filter\n\n```yaml\nfilters:\n  and:\n    - 'file.inFolder(\"Notes/farming-web-app-example\")'\n```\n\nเอาเฉพาะไฟล์ในโฟลเดอร์ example notes","x":-710,"y":510,"width":560,"height":220},
+		{"id":"d2d2d2d2d2d2d2d2","type":"text","text":"## Order + Group\n\n```yaml\norder:\n  - file.name\n  - type\n  - date\ngroupBy:\n  property: type\n```\n\nโชว์ column ชื่อไฟล์ / type / date จัดกลุ่มตาม type","x":-710,"y":775,"width":560,"height":305},
+		{"id":"d3d3d3d3d3d3d3d3","type":"text","text":"## ผลลัพธ์\n\n3 notes ที่ผ่าน filter (note-game-concept, note-tech-stack, research-game-engine) + 1 ไฟล์ WIP ที่ยังไม่มี frontmatter","x":-710,"y":1120,"width":560,"height":140},
+		{"id":"e2e2e2e2e2e2e2e2","type":"text","text":"## Order\n\n```yaml\norder:\n  - file.name\n  - type\n```\n\nแสดงเป็น card สั้นๆ เหมาะกับเนื้อหาสั้น ไม่ต้อง group","x":70,"y":840,"width":560,"height":220},
+		{"id":"e3e3e3e3e3e3e3e3","type":"text","text":"## ผลลัพธ์\n\ncrop-cycle (Keyword), farm-api (Microservice)","x":70,"y":1120,"width":560,"height":140}
+	],
+	"edges":[
+		{"id":"f1f1f1f1f1f1f1f1","fromNode":"b2b2b2b2b2b2b2b2","fromSide":"bottom","toNode":"d1d1d1d1d1d1d1d1","toSide":"top","label":"view: Notes"},
+		{"id":"f2f2f2f2f2f2f2f2","fromNode":"b2b2b2b2b2b2b2b2","fromSide":"bottom","toNode":"e1e1e1e1e1e1e1e1","toSide":"top","label":"view: Glossary"},
+		{"id":"f3f3f3f3f3f3f3f3","fromNode":"d1d1d1d1d1d1d1d1","fromSide":"bottom","toNode":"d2d2d2d2d2d2d2d2","toSide":"top"},
+		{"id":"f4f4f4f4f4f4f4f4","fromNode":"d2d2d2d2d2d2d2d2","fromSide":"bottom","toNode":"d3d3d3d3d3d3d3d3","toSide":"top"},
+		{"id":"f5f5f5f5f5f5f5f5","fromNode":"e1e1e1e1e1e1e1e1","fromSide":"bottom","toNode":"e2e2e2e2e2e2e2e2","toSide":"top"},
+		{"id":"f6f6f6f6f6f6f6f6","fromNode":"e2e2e2e2e2e2e2e2","fromSide":"bottom","toNode":"e3e3e3e3e3e3e3e3","toSide":"top"}
+	]
+}
