@@ -15,7 +15,7 @@ Skill ชุดนี้เขียนโดย Steph Ango (kepano) — CEO ข
 - `obsidian-markdown` — เขียน/แก้ syntax เฉพาะของ Obsidian (wikilink, callout, properties, embed)
 - `obsidian-bases` — สร้าง/แก้ไฟล์ `.base`
 - `json-canvas` — สร้าง/แก้ไฟล์ `.canvas`
-- `obsidian-cli` — คุยกับ Obsidian ที่เปิดอยู่ผ่าน `obsidian` CLI (ต้องลง CLI แยกต่างหาก — https://help.obsidian.md/cli)
+- `obsidian-cli` — คุยกับ Obsidian ที่เปิดอยู่ผ่าน `obsidian` CLI (ต้องลง CLI แยกต่างหาก — ดู "Optional: Obsidian CLI" ใน `instruction.md`)
 - `defuddle` — ดึง markdown สะอาดๆ จากหน้าเว็บ ประหยัด token แทนการ fetch ตรงๆ
 
 vault นี้ใช้ skill ชุดนี้อยู่แล้ว — note, `.base`, `.canvas` ตัวอย่างทั้งหมดถูกสร้างด้วย skill พวกนี้
@@ -66,12 +66,26 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
 
 **ถาม user:** ไฟล์ setup (`instruction.md` กับทั้งโฟลเดอร์ `claude-setup/` ที่มีไฟล์นี้อยู่) ตอนนี้ใช้งานเสร็จแล้ว อยากให้ทำยังไง?
 
-- **ย้ายไป `_Archives/`** — เก็บไว้อ้างอิงย้อนหลังได้ (เช่น กลับมาดูว่า feature ไหนติดตั้งไปแล้วบ้าง)
-- **ลบทิ้ง** — เอาออกจาก vault ให้สะอาด
+1. **ย้ายไป `_Archives/`** — เก็บไว้อ้างอิงย้อนหลังได้ (เช่น กลับมาดูว่า feature ไหนติดตั้งไปแล้วบ้าง)
+2. **ลบทิ้ง** — เอาออกจาก vault ให้สะอาด
+3. **ให้ user เลือกเอง** — ถาม user ว่าอยากเก็บไฟล์ไหนไว้บ้าง (เช่น เก็บแค่ `installer.md` ไว้ดูย้อนหลัง) แล้วไฟล์ที่เหลือเอาไปไว้ที่ไหน (`_Archives/` หรือลบ) — ทำตามที่ user ตอบเป๊ะๆ ไม่ต้องเดาแทน
 
 ทำตามที่ user เลือก:
 
-- ย้าย: ย้าย `instruction.md` และโฟลเดอร์ `claude-setup/` (ทั้งโฟลเดอร์) เข้าไปใน `_Archives/`
-- ลบ: ลบ `instruction.md` และโฟลเดอร์ `claude-setup/` ทั้งหมด
+- ตัวเลือก 1: ย้าย `instruction.md` และโฟลเดอร์ `claude-setup/` (ทั้งโฟลเดอร์) เข้าไปใน `_Archives/`
+- ตัวเลือก 2: ลบ `instruction.md` และโฟลเดอร์ `claude-setup/` ทั้งหมด
+- ตัวเลือก 3: ตามที่ user ระบุ
 
 ไม่ต้องถามเรื่อง `CLAUDE.md` ทั้งไฟล์ — ไฟล์นั้นอธิบายโครงสร้าง vault ให้ Claude อ่านต่อไปเรื่อยๆ ไม่ใช่ไฟล์ setup ชั่วคราว เก็บไว้เหมือนเดิม แต่ให้ลบเฉพาะ block "On first message in a fresh session" (อยู่บนสุดของ `CLAUDE.md` พูดถึง `claude-setup/`) ออกไปด้วย เพราะหลัง cleanup โฟลเดอร์นั้นไม่มีอยู่แล้ว ทิ้ง note ไว้จะชี้ไปที่ที่ไม่มีอยู่จริง
+
+**ถาม user อีกข้อ:** example data ที่มากับ starter kit ตอนนี้อยากทำยังไง? ไฟล์ที่เกี่ยวข้องทั้งหมด:
+- `_Projects/_examples/`, `_Areas/_examples/`, `_Keywords/_examples/`, `_Microservices/_examples/`
+- `_Templates/note-project-farm-app.example.md`
+- `Notes/farming-web-app-example/` ทั้งโฟลเดอร์ (ไฟล์ `.example.md` ทั้งหมด)
+- `base-farming-web-app-game.example.base`
+- `bases-explained.example.canvas`
+
+1. **เก็บไว้เหมือนเดิม** — ไม่แตะอะไร
+2. **ย้ายไป `_Archives/`** — เอาออกจาก working folder แต่ยังเปิดดูอ้างอิงได้ (ย้ายทุกไฟล์ข้างต้นทั้งหมด รวม base/canvas ด้วย คงโครง path เดิมไว้ใต้ `_Archives/`)
+3. **ลบทิ้ง** — ลบทุกไฟล์ข้างต้นทั้งหมด รวม base/canvas ด้วย ให้ vault สะอาด
+4. **ให้ user เลือกเอง** — ถาม user ว่าอยากเก็บไฟล์ไหนไว้บ้าง แล้วไฟล์ที่เหลือ (ที่ไม่ได้เลือกเก็บ) จะเอาไปไว้ที่ไหน (`_Archives/` หรือ ลบทิ้ง) — ทำตามที่ user ตอบเป๊ะๆ ไม่ต้องเดาแทน

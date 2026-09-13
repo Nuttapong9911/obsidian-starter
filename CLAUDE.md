@@ -79,10 +79,10 @@ So a `type: Note` with no `project` is the one thing worth grepping for. `Resear
 
 ## Templates
 
-The Templates core plugin points at `_Templates/`. `note-project-farm-app.md` is the worked example — a Note template with `project`/`area` already filled in and `date` left blank for you to set per use.
+The Templates core plugin points at `_Templates/`. `note-project-farm-app.example.md` is the worked example — a Note template with `project`/`area` already filled in and `date` left blank for you to set per use.
 
 **Tip for Claude:** `{{date}}` in a template body auto-resolves to the current date when the note is created — this works for plain body text and for most frontmatter properties. It does **not** work if typed directly into a `date`-type property through the Obsidian UI (the property editor rejects it and forces a real calendar value instead). If a template needs `{{date}}` in a `date`-type property, edit the template file directly in a text editor (or have Claude do it) rather than through Obsidian's properties UI.
 
 ## Bases
 
-`base-farming-web-app-game.example.base` shows two views built from the properties above: a table of every Note/Research under the example project, and a card view of every Keyword/Microservice it references. `bases-explained.canvas` breaks down how each view's filter → order/group → result was built.
+`base-farming-web-app-game.example.base` shows two views built from the properties above: a table of every Note/Research under the example project, and a card view of every Keyword/Microservice it references. `bases-explained.example.canvas` breaks down how each view's filter → order/group → result was built.

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "a0fe13dbbc7c18c6",
+        "id": "830b7635d2c59647",
         "type": "tabs",
         "children": [
           {
-            "id": "f19a1585549177af",
+            "id": "e1853840e419e4f7",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -79,7 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 330.27734375
+    "width": 345.1015625
   },
   "right": {
     "id": "4a1d7d2c47610482",
@@ -95,7 +95,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "instruction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +113,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "instruction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -157,7 +155,6 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "instruction.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -184,12 +181,19 @@
       "bases:Create new base": false
     }
   },
-  "active": "6ce4c710e9fc4997",
+  "active": "e1853840e419e4f7",
   "lastOpenFiles": [
-    "instruction-plan.md",
     "instruction.md",
-    "CLAUDE.md",
     "claude-setup/installer.md",
+    "Notes/farming-web-app-example/note-new-template.example.md",
+    "Notes/farming-web-app-example/research-game-engine.example.md",
+    "Notes/farming-web-app-example/note-tech-stack.example.md",
+    "Notes/farming-web-app-example/note-game-concept.example.md",
+    "CLAUDE.md",
+    "bases-explained.example.canvas",
+    "plan.md",
+    "_Templates/note-project-farm-app.example.md",
+    "instruction-plan.md",
     "claude-setup/skills/monthly-report/SKILL.md",
     "claude-setup/skills/daily-report/SKILL.md",
     "claude-setup/templates/daily_report.md",
@@ -201,13 +205,7 @@
     "claude-setup/skills",
     "claude-setup",
     "base-farming-web-app-game.example.base",
-    "Notes/farming-web-app-example/research-game-engine.example.md",
-    "Notes/farming-web-app-example/note-tech-stack.example.md",
-    "Notes/farming-web-app-example/note-new-template.example.md",
     "_Projects/_examples/farming-web-app-game.md",
-    "Notes/farming-web-app-example/note-game-concept.example.md",
-    "bases-explained.canvas",
-    "_Templates/note-project-farm-app.md",
     "_Templates/Untitled",
     "_Microservices/_examples/farm-api.md",
     "_Projects/_examples",
@@ -220,8 +218,6 @@
     "Notes/Website Redesign/note-kickoff-meeting.md",
     "Notes/Website Redesign/research-jwt.md",
     "_Microservices/auth-service.md",
-    "_Keywords/keyword-jwt.md",
-    "_Areas/area-team-onboarding.md",
-    "Notes/Untitled.md"
+    "_Keywords/keyword-jwt.md"
   ]
 }
