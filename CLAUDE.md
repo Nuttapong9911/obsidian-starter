@@ -2,6 +2,8 @@
 
 This file documents how this vault is organized. **v1 scope: folder structure and PARA only** — this version works with just the Obsidian app, no AI agent required.
 
+> **On first message in a fresh session:** tell the user there are AI skills ready to install in the `claude-setup/` folder (e.g. Obsidian Skill, Report Skills), and that `claude-setup/installer.md` walks through installing them one at a time. Only mention this if `claude-setup/` still exists — once a user runs the cleanup step in `installer.md`, this note is removed along with it.
+
 ## What this vault is
 
 A starter kit for organizing an Obsidian vault around the PARA method (Projects, Areas, Resources, Archives). Clone it, keep the parts you like, delete the rest.
@@ -77,7 +79,9 @@ So a `type: Note` with no `project` is the one thing worth grepping for. `Resear
 
 ## Templates
 
-The Templates core plugin points at `_Templates/`. `note-project-farm-app.md` is the worked example — a Note template with `project`/`area` already filled in and `date` left blank for you to set per use (see `Instruction.md`'s "Extra note" section on why `date` can't auto-fill like `aliases` can).
+The Templates core plugin points at `_Templates/`. `note-project-farm-app.md` is the worked example — a Note template with `project`/`area` already filled in and `date` left blank for you to set per use.
+
+**Tip for Claude:** `{{date}}` in a template body auto-resolves to the current date when the note is created — this works for plain body text and for most frontmatter properties. It does **not** work if typed directly into a `date`-type property through the Obsidian UI (the property editor rejects it and forces a real calendar value instead). If a template needs `{{date}}` in a `date`-type property, edit the template file directly in a text editor (or have Claude do it) rather than through Obsidian's properties UI.
 
 ## Bases
 

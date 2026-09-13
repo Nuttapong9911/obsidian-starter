@@ -1,50 +1,40 @@
-## Chapter 1 - การใช้งานเบื้องต้น
+## Prerequisites
 
-> *ลงแค่ Obsidian App -> clone project ใช้งานได้เลย*
+ใช้ Obsidian ร่วมกับ AI ได้ 2 ทาง เลือกทางใดทางหนึ่งก็พอ
 
-1. PARA Concept + Obsidian
-	- [x] แบ่ง Structure repo
-	- [x] Properties
-	- [x] ตัวอย่าง data-example.md
+### ทาง 1: Claude Code CLI
 
-2. Properties
-	*มี PARA Concept Repo Structure -> สามารถกำหนด Properties ของแต่ละ Notes ได้ เช่น project, type, etc.*
-	- [x] สร้างตัวอย่าง Properties ของแต่ละ `_Folders`
+ต้องลงทั้งคู่:
+- **Claude Code CLI** — ตัว AI agent หลัก รันผ่าน terminal
+- **Obsidian community plugin: Terminal** — เปิด terminal ในตัว Obsidian ได้เลย ไม่ต้องสลับไปแอป terminal แยก
 
-3. Template
-	*พอสร้าง Note ใหม่ ต้องมากำหนด Properties ใหม่เสมอ บางทีกำหนดไม่ตรงทำไงดี -> Template ช่วยได้ เร็วขึ้น*
-	- [x] set obsidian config template ชี้ไป `_Templates` -> .obsidian อัพเดตใหม่ เอาไปด้วยได้
-	- [x] ตัวอย่าง template
+### ทาง 2: Claude Code (Desktop App)
 
-4. Based
-	*มี Properties แล้วสามารถสร้าง Based Views ได้*
-	- [x] ตัวอย่าง Based
+ต้องลงแค่:
+- **Claude Code Desktop App** — มี UI/terminal ในตัวอยู่แล้ว ไม่ต้องพึ่ง community plugin เพิ่ม
 
-5. Canvas
-	*หาฟีเจอร์มาแนะนำการใช้ Canvas ง่ายๆ*
-	- [o] ตัวอย่าง Canvas อธิบาย Base
+### Optional: Obsidian CLI
 
-## Chapter 2 - When AI comes in
+ใช้ทั้ง 2 ทางเหมือนกัน — ไม่บังคับตอน setup แรก แต่บาง feature (เช่น Report Skills) ต้องมีถึงจะติดตั้งได้ ถ้ายังไม่มีให้ทำ 2 steps นี้ก่อน (จาก https://obsidian.md/cli):
 
-> ให้ AI Agent มาช่วยเขียน Note, อำนวยความสะดวก
+1. **Activate the CLI** — Enable "Command line interface" ใน Settings → General
+2. **Register the CLI** — ทำตาม on-screen instructions เพื่อเพิ่ม CLI เข้า system PATH แล้ว restart terminal (บน macOS ขั้นนี้จะสร้าง symlink ที่ `/usr/local/bin/obsidian` ต้องใช้สิทธิ์ admin จะมี system dialog ถามขึ้นมา)
 
-**Prerequisites**
-- Claude Code CLI -> AI Agent หลัก
-- Obsidian CLI -> ทำให้
-- Obsidian Community Plugin Terminal
+เช็คว่าลงสำเร็จด้วย `which obsidian` หรือ `obsidian version`
 
-1. Claude Skills
-	- [ ] Personal Skill
-	- [ ] Obsidian Skill by Obsidian's CEO
+## 1. เริ่ม Claude ใน Vault
 
-2. Obsidian CLI
-	ทำให้จัดการ note ผ่าน command line ได้สะดวกขึ้น, แต่ก็เทียบเท่ากับการคลิกเมาส์ได้หมด เลยให้ ai ใช้แทน
-	- [ ] 
+### ทาง 1: Claude Code CLI
 
-## Extra note
-- Properties Date ใน Template
-	- สามารถใส่ค่าเป็น {Date} ได้ แล้วทำให้ template ที่สร้าง auto-assign เป็นวันที่สร้างได้เลย
-	- แต่ไม่สามารถใส่ `{Date}` ในช่อง Properties type Date ตรงๆได้
-	- ต้องไปแก้เองใน editor อื่น หรือให้ ai agent แก้ให้
+1. เปิด vault นี้ใน Obsidian
+2. เปิด panel ของ Terminal plugin (command palette → "Terminal: Open terminal") — cwd จะเป็น root ของ vault ให้อัตโนมัติ
+3. รันคำสั่ง:
+   ```
+   claude
+   ```
 
+### ทาง 2: Claude Code (Desktop App)
 
+1. เปิด Claude Code Desktop App
+2. เลือก/เปิด project แล้วชี้ path ไปที่ vault ที่ clone มา
+3. เริ่มแชทได้เลย

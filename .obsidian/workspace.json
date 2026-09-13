@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "fa35ffcdaa1cb906",
+        "id": "a0fe13dbbc7c18c6",
         "type": "tabs",
         "children": [
           {
-            "id": "34cabd564a90359d",
+            "id": "f19a1585549177af",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Instruction.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Instruction"
+              "title": "New tab"
             }
           }
         ]
@@ -99,7 +95,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Instruction.md",
+                "file": "instruction.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Instruction.md",
+                "file": "instruction.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +157,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Instruction.md",
+                "file": "instruction.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -188,10 +184,22 @@
       "bases:Create new base": false
     }
   },
-  "active": "34cabd564a90359d",
+  "active": "6ce4c710e9fc4997",
   "lastOpenFiles": [
+    "instruction-plan.md",
+    "instruction.md",
     "CLAUDE.md",
-    "Instruction.md",
+    "claude-setup/installer.md",
+    "claude-setup/skills/monthly-report/SKILL.md",
+    "claude-setup/skills/daily-report/SKILL.md",
+    "claude-setup/templates/daily_report.md",
+    "claude-setup/templates",
+    "claude-setup/skills/monthly-report",
+    "claude-setup/skills/weekly-report/SKILL.md",
+    "claude-setup/skills/weekly-report",
+    "claude-setup/skills/daily-report",
+    "claude-setup/skills",
+    "claude-setup",
     "base-farming-web-app-game.example.base",
     "Notes/farming-web-app-example/research-game-engine.example.md",
     "Notes/farming-web-app-example/note-tech-stack.example.md",
@@ -205,22 +213,15 @@
     "_Projects/_examples",
     "_Areas/_examples/software-development.md",
     "_Microservices/_examples",
-    "_Keywords/_examples",
-    "_Areas/_examples",
     "_Areas/Untitled.md",
     "_Keywords/_examples/crop-cycle.md",
     "Notes/Website Redesign/note-auth-flow-notes.md",
-    "Notes/farming-web-app-example",
     "_Projects/project-website-redesign.md",
     "Notes/Website Redesign/note-kickoff-meeting.md",
     "Notes/Website Redesign/research-jwt.md",
     "_Microservices/auth-service.md",
     "_Keywords/keyword-jwt.md",
     "_Areas/area-team-onboarding.md",
-    "Notes/Website Redesign",
-    "_Microservices",
-    "Notes/Untitled.md",
-    "Welcome.md",
-    "Notes"
+    "Notes/Untitled.md"
   ]
 }
