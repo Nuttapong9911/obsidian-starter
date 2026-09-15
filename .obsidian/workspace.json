@@ -11,10 +11,14 @@
             "id": "e1853840e419e4f7",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "claude-setup/installer.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "installer"
             }
           }
         ]
@@ -185,12 +189,13 @@
   "lastOpenFiles": [
     "instruction.md",
     "claude-setup/installer.md",
+    "bases-explained.example.canvas",
+    "base-farming-web-app-game.example.base",
+    "Notes/farming-web-app-example/note-game-concept.example.md",
     "Notes/farming-web-app-example/note-new-template.example.md",
     "Notes/farming-web-app-example/research-game-engine.example.md",
     "Notes/farming-web-app-example/note-tech-stack.example.md",
-    "Notes/farming-web-app-example/note-game-concept.example.md",
     "CLAUDE.md",
-    "bases-explained.example.canvas",
     "plan.md",
     "_Templates/note-project-farm-app.example.md",
     "instruction-plan.md",
@@ -204,7 +209,6 @@
     "claude-setup/skills/daily-report",
     "claude-setup/skills",
     "claude-setup",
-    "base-farming-web-app-game.example.base",
     "_Projects/_examples/farming-web-app-game.md",
     "_Templates/Untitled",
     "_Microservices/_examples/farm-api.md",
