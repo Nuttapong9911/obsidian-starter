@@ -11,14 +11,10 @@
             "id": "e1853840e419e4f7",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "claude-setup/installer.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "installer"
+              "title": "New tab"
             }
           }
         ]
@@ -185,11 +181,25 @@
       "bases:Create new base": false
     }
   },
-  "active": "e1853840e419e4f7",
+  "active": "6ce4c710e9fc4997",
   "lastOpenFiles": [
-    "instruction.md",
+    "claude-setup/skills/daily-report/SKILL.md",
+    "claude-setup/skills/weekly-report/SKILL.md",
+    "claude-setup/skills/monthly-report/SKILL.md",
+    "claude-setup/templates/daily_report.md",
+    "claude-setup/skills/weekly-report",
+    "claude-setup/skills/monthly-report",
+    "claude-setup/skills/daily-report",
+    "claude-setup/templates",
+    "claude-setup/skills",
     "claude-setup/installer.md",
+    "claude-setup",
     "bases-explained.example.canvas",
+    "_Templates/note-project-farm-app.example.md",
+    "Instruction.md",
+    "bases-explained.canvas",
+    "_Templates/note-project-farm-app.md",
+    "instruction.md",
     "base-farming-web-app-game.example.base",
     "Notes/farming-web-app-example/note-game-concept.example.md",
     "Notes/farming-web-app-example/note-new-template.example.md",
@@ -197,18 +207,7 @@
     "Notes/farming-web-app-example/note-tech-stack.example.md",
     "CLAUDE.md",
     "plan.md",
-    "_Templates/note-project-farm-app.example.md",
     "instruction-plan.md",
-    "claude-setup/skills/monthly-report/SKILL.md",
-    "claude-setup/skills/daily-report/SKILL.md",
-    "claude-setup/templates/daily_report.md",
-    "claude-setup/templates",
-    "claude-setup/skills/monthly-report",
-    "claude-setup/skills/weekly-report/SKILL.md",
-    "claude-setup/skills/weekly-report",
-    "claude-setup/skills/daily-report",
-    "claude-setup/skills",
-    "claude-setup",
     "_Projects/_examples/farming-web-app-game.md",
     "_Templates/Untitled",
     "_Microservices/_examples/farm-api.md",
@@ -220,8 +219,6 @@
     "Notes/Website Redesign/note-auth-flow-notes.md",
     "_Projects/project-website-redesign.md",
     "Notes/Website Redesign/note-kickoff-meeting.md",
-    "Notes/Website Redesign/research-jwt.md",
-    "_Microservices/auth-service.md",
-    "_Keywords/keyword-jwt.md"
+    "Notes/Website Redesign/research-jwt.md"
   ]
 }
