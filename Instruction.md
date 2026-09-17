@@ -38,3 +38,11 @@
 1. เปิด Claude Code Desktop App
 2. เลือก/เปิด project แล้วชี้ path ไปที่ vault ที่ clone มา
 3. เริ่มแชทได้เลย
+
+## 2. เริ่ม Setup
+
+ปกติ Claude จะทักก่อนเองว่ามี AI skills ให้ติดตั้งใน `claude-setup/` (ตาม note ใน `CLAUDE.md`) ถ้าเปิด session แล้วไม่เห็น Claude พูดถึงเรื่องนี้ พิมพ์บอกตรงๆ ได้เลย:
+
+```
+start setup
+```

@@ -5,10 +5,12 @@
 > 2. ถามว่าอยากติดตั้งไหม
 > 3. ถ้าไม่ → ข้ามไป feature ถัดไป
 > 4. ถ้าใช่ → ถาม confirm อีกรอบ แล้วค่อยโชว์คำสั่งติดตั้งให้ user เป็นคนรันเอง (Claude ไม่รันเอง เว้นแต่ user ขอให้รันให้)
+>
+> ข้อยกเว้น: **Feature 1** ไม่ทำตามลำดับข้างบน — โชว์คำสั่งติดตั้งไปพร้อม explanation ในข้อความเดียวเลย ไม่ต้องถามก่อนว่าจะติดตั้งไหม ไม่ต้อง confirm ซ้ำ (ดูรายละเอียดใน section ของมันเอง)
 
 ## Feature 1: Obsidian Skill (by Obsidian's CEO)
 
-**อธิบายให้ user ฟัง:**
+**อธิบายให้ user ฟัง พร้อมโชว์คำสั่งติดตั้งในข้อความเดียวกันเลย** (ไม่ต้องถามว่าจะติดตั้งไหมก่อน):
 
 Skill ชุดนี้เขียนโดย Steph Ango (kepano) — CEO ของ Obsidian เอง ([kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)) เป็น Claude Code skill 5 ตัวสำหรับทำงานกับไฟล์ Obsidian โดยตรง:
 
@@ -20,17 +22,16 @@ Skill ชุดนี้เขียนโดย Steph Ango (kepano) — CEO ข
 
 vault นี้ใช้ skill ชุดนี้อยู่แล้ว — note, `.base`, `.canvas` ตัวอย่างทั้งหมดถูกสร้างด้วย skill พวกนี้
 
-**ถาม user:** อยากติดตั้งไหม?
+ถ้าอยากติดตั้ง รันคำสั่งนี้เอง (Claude Code slash command รันในเซสชัน Claude Code เอง ไม่ใช่ shell command):
 
-- **ไม่** → ข้ามไป feature ถัดไป
-- **ใช่** → confirm อีกครั้ง ("ยืนยันติดตั้ง Obsidian Skill ใช่ไหม?") แล้วโชว์คำสั่งนี้ให้ user รันเอง:
+```
+/plugin marketplace add kepano/obsidian-skills
+/plugin install obsidian@obsidian-skills
+```
 
-  ```
-  /plugin marketplace add kepano/obsidian-skills
-  /plugin install obsidian@obsidian-skills
-  ```
+หลังติดตั้งเสร็จ Claude Code จะเขียน `enabledPlugins` ลง `.claude/settings.json` ของ vault นี้ให้อัตโนมัติ — commit ไฟล์นั้นไว้ด้วยเพื่อให้คนอื่นที่ clone repo ต่อได้ enable เหมือนกัน
 
-  หมายเหตุให้ user: นี่คือ Claude Code slash command รันในเซสชัน Claude Code เอง ไม่ใช่ shell command หลังติดตั้งเสร็จ Claude Code จะเขียน `enabledPlugins` ลง `.claude/settings.json` ของ vault นี้ให้อัตโนมัติ — commit ไฟล์นั้นไว้ด้วยเพื่อให้คนอื่นที่ clone repo ต่อได้ enable เหมือนกัน
+**ถาม user:** อยากไปต่อ feature ถัดไปไหม?
 
 ## Feature 2: Daily / Weekly / Monthly Report Skills
 
@@ -51,7 +52,7 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
 **ถาม user:** อยากติดตั้งไหม?
 
 - **ไม่** → ข้ามไป feature ถัดไป
-- **ใช่** → confirm อีกครั้ง ("ยืนยันติดตั้ง Report Skills ใช่ไหม?") แล้วทำตามนี้ (ไม่ต้องโชว์คำสั่งให้ user รันเอง เพราะเป็นแค่การ copy ไฟล์ + แก้ path ในไฟล์ ทำให้ user เลยได้):
+- **ใช่** → confirm อีกครั้งพร้อมบอกรายละเอียดว่าจะทำอะไร เช่น "ยืนยันติดตั้ง Report Skills ใช่ไหม? จะ copy skill 3 ตัว (daily-report, weekly-report, monthly-report) จาก `claude-setup/skills/` ไปติดตั้งเป็น local-level skill ใน `.claude/skills/` ของ vault นี้ พร้อม copy template `daily_report.md` ไปที่ `_Templates/` ด้วย" แล้วทำตามนี้ (ไม่ต้องโชว์คำสั่งให้ user รันเอง เพราะเป็นแค่การ copy ไฟล์ + แก้ path ในไฟล์ ทำให้ user เลยได้):
 
   1. หา vault path ปัจจุบัน (`pwd` หรือ root ของ vault ที่ user เปิดอยู่) และ vault name (ปกติคือชื่อโฟลเดอร์ vault — ถ้าไม่ชัวร์ให้ถาม user)
   2. Copy 3 ไฟล์นี้จาก `claude-setup/skills/<name>/SKILL.md` ไปยัง `.claude/skills/<name>/SKILL.md` (daily-report, weekly-report, monthly-report) — ระหว่าง copy ให้แทนที่ `__VAULT_PATH__` ด้วย vault path จริง และ `__VAULT_NAME__` ด้วย vault name จริงในทุกจุดที่เจอ
