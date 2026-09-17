@@ -13,17 +13,31 @@ T=$(date +%Y-%m-%d); M=$(date +%Y-%m); F="Reports/Daily/$M/$T.md"
 P=$(find Reports/Daily -name "*.md" ! -name "$T.md" | sort | tail -1)
 
 mkdir -p "Reports/Daily/$M"
-if [ -f "$F" ]; then STATUS="opened"; else
-  obsidian create vault=__VAULT_NAME__ path="$F" template="daily_report" silent >/dev/null
+if [ -f "$F" ]; then
+  STATUS="opened"
+else
+  OUT=$(obsidian create vault=__VAULT_NAME__ path="$F" template="daily_report" silent 2>&1)
+  if [ $? -ne 0 ]; then
+    echo "❌ obsidian create failed: $OUT"
+    exit 1
+  fi
   STATUS="created"
 fi
 
 if [ -n "$P" ]; then
-  obsidian open vault=__VAULT_NAME__ path="$P" >/dev/null
+  OUT=$(obsidian open vault=__VAULT_NAME__ path="$P" 2>&1)
+  if [ $? -ne 0 ]; then
+    echo "❌ obsidian open (previous) failed: $OUT"
+    exit 1
+  fi
   sleep 1
   open "obsidian://open?vault=__VAULT_NAME__&file=${F%.md}&paneType=split"
 else
-  obsidian open vault=__VAULT_NAME__ path="$F" >/dev/null
+  OUT=$(obsidian open vault=__VAULT_NAME__ path="$F" 2>&1)
+  if [ $? -ne 0 ]; then
+    echo "❌ obsidian open failed: $OUT"
+    exit 1
+  fi
 fi
 
 echo "$STATUS $F"
