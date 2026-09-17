@@ -52,6 +52,15 @@ vault นี้ใช้ skill ชุดนี้อยู่แล้ว — no
 
 **ถาม user:** อยากไปต่อ feature ถัดไปไหม?
 
+## Step 1.5: Template Config
+
+vault นี้ออกแบบให้ template folder ต้องเป็น `_Templates` เสมอ (repo pattern ตายตัว ไม่ใช่ optional) — เช็คก่อนเข้า Feature 2 ว่าตั้งไว้ถูกไหม จาก `.obsidian/core-plugins.json` (ต้องมี `"templates": true`) และ `.obsidian/templates.json` (ต้องมี `{"folder": "_Templates"}`)
+
+- **ถูกอยู่แล้ว** → ข้ามไป Feature 2 ได้เลย ไม่ต้องถามอะไร
+- **ยังไม่ถูก/ไม่มีไฟล์** → **ถาม user เป็น confirmation prompt เดียว:** "vault นี้ต้องเปิด Templates core plugin ชี้ไปที่ `_Templates` ให้ Claude แก้ไฟล์ `.obsidian/core-plugins.json` และ `.obsidian/templates.json` ให้เลยไหม (เทียบเท่า user เข้า Settings → Core plugins → เปิด Templates → ตั้ง Template folder location เป็น `_Templates`)"
+  - **ใช่** → set `"templates": true` ใน `.obsidian/core-plugins.json`, เขียน `{"folder": "_Templates"}` ใน `.obsidian/templates.json` (สร้างไฟล์ถ้ายังไม่มี) → รัน `obsidian reload vault=__VAULT_NAME__` ทันที แล้วไปต่อ Feature 2
+  - **ไม่** → เตือน user ว่า `/daily-report` ใน Feature 2 จะไม่ทำงานถ้าไม่ตั้งอันนี้ ถามอีกรอบว่าจะข้ามไป Feature 2 แบบรู้ความเสี่ยง หรือกลับไปตั้งเองผ่าน Settings ก่อนแล้วเช็คซ้ำ
+
 ## Feature 2: Daily / Weekly / Monthly Report Skills
 
 **อธิบายให้ user ฟัง:**
@@ -62,26 +71,20 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
 - `/weekly-report` — รวบรวม daily report ของสัปดาห์นี้ สรุปเป็น bullet สั้นๆ พร้อมเอาไปพูดในที่ประชุม
 - `/monthly-report` — รวบรวม daily report ทั้งเดือน สรุปเป็น draft ให้หัวข้อ ไม่บีบเนื้อหาแรงเท่า weekly เพราะเป็น raw material ให้ user เอาไปเรียบเรียงต่อเอง
 
-ทั้ง 3 ตัวพึ่ง `obsidian` CLI (ต้องเปิด Obsidian อยู่ตอนรัน) และ `/daily-report` พึ่ง Obsidian Templates core plugin ด้วย (ต้อง enable ไว้ และมี template `daily_report.md` อยู่ใน template folder ที่ตั้งไว้)
+ทั้ง 3 ตัวพึ่ง `obsidian` CLI (ต้องเปิด Obsidian อยู่ตอนรัน) และ `/daily-report` พึ่ง template folder `_Templates` ที่เช็ค/ตั้งไว้แล้วใน Step 1.5
 
-**เช็ค prerequisite ก่อนถาม install:**
+**เช็ค prerequisite ก่อนถาม install:** รัน `which obsidian` หรือ `obsidian version` ดูก่อนว่ามี CLI พร้อมใช้ไหม
 
-1. รัน `which obsidian` หรือ `obsidian version` ดูก่อนว่ามี CLI พร้อมใช้ไหม
-   - **ไม่มี** → ชี้ user ไปทำตาม "Optional: Obsidian CLI" ใน `instruction.md` (หมวด Prerequisites) ก่อน แล้วค่อยกลับมาเช็คซ้ำ (`which obsidian`) ก่อนไปต่อ
-2. เช็คว่า Templates core plugin เปิดอยู่ไหมและตั้ง folder ไว้หรือยัง — ดูจาก `.obsidian/core-plugins.json` (ต้องมี `"templates": true`) และ `.obsidian/templates.json` (ต้องมี field `folder` เช่น `{"folder": "_Templates"}`)
-   - **ครบทั้งคู่แล้ว** → เก็บค่า `folder` ไว้ใช้ใน step ติดตั้งข้างล่าง (แทนที่ path `_Templates/` ที่ hardcode ไว้)
-   - **ไม่ครบ (ปิดอยู่ หรือไม่มี `folder`)** → บอก user ว่า Claude แก้ 2 ไฟล์นี้ให้เองได้ (เทียบเท่า user เข้า Settings → Core plugins → เปิด Templates → ตั้ง "Template folder location" เป็น `_Templates`) **ถามก่อนว่าให้ Claude แก้ให้เลยไหม**:
-     - **ใช่** → set `"templates": true` ใน `.obsidian/core-plugins.json` และเขียน `{"folder": "_Templates"}` ใน `.obsidian/templates.json` (สร้างไฟล์ถ้ายังไม่มี) แล้วบอก user reload Obsidian (หรือปิดเปิดใหม่) เพื่อให้เห็นผล จากนั้นไปต่อ โดยใช้ `_Templates` เป็นค่า `folder`
-     - **ไม่** → ชี้ user ไปตั้งเองผ่าน Settings ก่อน แล้วกลับมาเช็คซ้ำ (ขั้น 2) ก่อนไปต่อ
+- **ไม่มี** → ชี้ user ไปทำตาม "Optional: Obsidian CLI" ใน `instruction.md` (หมวด Prerequisites) ก่อน แล้วค่อยกลับมาเช็คซ้ำ (`which obsidian`) ก่อนไปต่อ
 
 **ถาม user:** อยากติดตั้งไหม?
 
 - **ไม่** → ข้ามไป feature ถัดไป
-- **ใช่** → confirm อีกครั้งพร้อมบอกรายละเอียดว่าจะทำอะไร เช่น "ยืนยันติดตั้ง Report Skills ใช่ไหม? จะ copy skill 3 ตัว (daily-report, weekly-report, monthly-report) จาก `claude-setup/skills/` ไปติดตั้งเป็น local-level skill ใน `.claude/skills/` ของ vault นี้ พร้อม copy template `daily_report.md` ไปที่ template folder ของ vault (`<folder จาก templates.json>`) ด้วย" แล้วทำตามนี้ (ไม่ต้องโชว์คำสั่งให้ user รันเอง เพราะเป็นแค่การ copy ไฟล์ + แก้ path ในไฟล์ ทำให้ user เลยได้):
+- **ใช่** → confirm อีกครั้งพร้อมบอกรายละเอียดว่าจะทำอะไร เช่น "ยืนยันติดตั้ง Report Skills ใช่ไหม? จะ copy skill 3 ตัว (daily-report, weekly-report, monthly-report) จาก `claude-setup/skills/` ไปติดตั้งเป็น local-level skill ใน `.claude/skills/` ของ vault นี้ พร้อม copy template `daily_report.md` ไปที่ `_Templates/` ด้วย" แล้วทำตามนี้ (ไม่ต้องโชว์คำสั่งให้ user รันเอง เพราะเป็นแค่การ copy ไฟล์ + แก้ path ในไฟล์ ทำให้ user เลยได้):
 
   1. หา vault path ปัจจุบัน (`pwd` หรือ root ของ vault ที่ user เปิดอยู่) และ vault name (ปกติคือชื่อโฟลเดอร์ vault — ถ้าไม่ชัวร์ให้ถาม user)
   2. Copy 3 ไฟล์นี้จาก `claude-setup/skills/<name>/SKILL.md` ไปยัง `.claude/skills/<name>/SKILL.md` (daily-report, weekly-report, monthly-report) — ระหว่าง copy ให้แทนที่ `__VAULT_PATH__` ด้วย vault path จริง และ `__VAULT_NAME__` ด้วย vault name จริงในทุกจุดที่เจอ
-  3. Copy `claude-setup/templates/daily_report.md` ไปยัง `<folder จาก .obsidian/templates.json>/daily_report.md` (ไม่ hardcode เป็น `_Templates/` — ใช้ค่าที่เช็คไว้ใน prerequisite ข้างบน)
+  3. Copy `claude-setup/templates/daily_report.md` ไปยัง `_Templates/daily_report.md`
   4. บอก user ว่าเสร็จแล้ว ลองพิมพ์ `/daily-report` ได้เลย
 
   หมายเหตุ: staged source ใน `claude-setup/skills/` และ `claude-setup/templates/` เก็บไว้เป็น reference ต่อ ไม่ต้องลบทิ้งหลังติดตั้ง
@@ -92,14 +95,14 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
 
 **ถาม user:** ไฟล์ setup (`instruction.md` กับทั้งโฟลเดอร์ `claude-setup/` ที่มีไฟล์นี้อยู่) ตอนนี้ใช้งานเสร็จแล้ว อยากให้ทำยังไง?
 
-1. **ย้ายไป `_Archives/`** — เก็บไว้อ้างอิงย้อนหลังได้ (เช่น กลับมาดูว่า feature ไหนติดตั้งไปแล้วบ้าง)
-2. **ลบทิ้ง** — เอาออกจาก vault ให้สะอาด
+1. **ลบทิ้ง** — เอาออกจาก vault ให้สะอาด
+2. **ย้ายไป `_Archives/`** — เก็บไว้อ้างอิงย้อนหลังได้ (เช่น กลับมาดูว่า feature ไหนติดตั้งไปแล้วบ้าง)
 3. **ให้ user เลือกเอง** — ถาม user ว่าอยากเก็บไฟล์ไหนไว้บ้าง (เช่น เก็บแค่ `installer.md` ไว้ดูย้อนหลัง) แล้วไฟล์ที่เหลือเอาไปไว้ที่ไหน (`_Archives/` หรือลบ) — ทำตามที่ user ตอบเป๊ะๆ ไม่ต้องเดาแทน
 
 ทำตามที่ user เลือก:
 
-- ตัวเลือก 1: ย้าย `instruction.md` และโฟลเดอร์ `claude-setup/` (ทั้งโฟลเดอร์) เข้าไปใน `_Archives/`
-- ตัวเลือก 2: ลบ `instruction.md` และโฟลเดอร์ `claude-setup/` ทั้งหมด
+- ตัวเลือก 1: ลบ `instruction.md` และโฟลเดอร์ `claude-setup/` ทั้งหมด
+- ตัวเลือก 2: ย้าย `instruction.md` และโฟลเดอร์ `claude-setup/` (ทั้งโฟลเดอร์) เข้าไปใน `_Archives/`
 - ตัวเลือก 3: ตามที่ user ระบุ
 
 ไม่ต้องถามเรื่อง `CLAUDE.md` ทั้งไฟล์ — ไฟล์นั้นอธิบายโครงสร้าง vault ให้ Claude อ่านต่อไปเรื่อยๆ ไม่ใช่ไฟล์ setup ชั่วคราว เก็บไว้เหมือนเดิม แต่ให้ลบเฉพาะ block "On first message in a fresh session" (อยู่บนสุดของ `CLAUDE.md` พูดถึง `claude-setup/`) ออกไปด้วย เพราะหลัง cleanup โฟลเดอร์นั้นไม่มีอยู่แล้ว ทิ้ง note ไว้จะชี้ไปที่ที่ไม่มีอยู่จริง
