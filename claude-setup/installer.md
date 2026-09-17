@@ -85,13 +85,17 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
   1. หา vault path ปัจจุบัน (`pwd` หรือ root ของ vault ที่ user เปิดอยู่) และ vault name (ปกติคือชื่อโฟลเดอร์ vault — ถ้าไม่ชัวร์ให้ถาม user)
   2. Copy 3 ไฟล์นี้จาก `claude-setup/skills/<name>/SKILL.md` ไปยัง `.claude/skills/<name>/SKILL.md` (daily-report, weekly-report, monthly-report) — ระหว่าง copy ให้แทนที่ `__VAULT_PATH__` ด้วย vault path จริง และ `__VAULT_NAME__` ด้วย vault name จริงในทุกจุดที่เจอ
   3. Copy `claude-setup/templates/daily_report.md` ไปยัง `_Templates/daily_report.md`
-  4. บอก user ว่าเสร็จแล้ว ลองพิมพ์ `/daily-report` ได้เลย
+  4. สร้างโฟลเดอร์ `Reports/Daily`, `Reports/Weekly`, `Reports/Monthly` ใน vault (`mkdir -p`) ให้ครบทั้ง 3 ก่อนที่ skill จะถูกเรียกใช้จริง
+  5. รัน `obsidian reload vault=__VAULT_NAME__` อีกครั้งเพื่อให้แน่ใจว่า Obsidian เห็นโฟลเดอร์ใหม่และ config ล่าสุดครบ (กัน bug เดิมที่ session ค้าง config เก่า)
+  6. บอก user ว่าเสร็จแล้ว ลองพิมพ์ `/daily-report` ได้เลย
 
   หมายเหตุ: staged source ใน `claude-setup/skills/` และ `claude-setup/templates/` เก็บไว้เป็น reference ต่อ ไม่ต้องลบทิ้งหลังติดตั้ง
 
 ## Final Step: Cleanup
 
 หลังถามครบทุก feature ข้างบนแล้ว (ไม่ว่า user จะเลือกติดตั้งอะไรบ้าง) ให้เก็บกวาดไฟล์ setup เอง:
+
+**สำคัญ:** ขั้นนี้มี 2 คำถามให้ user ตอบ (setup files + example data ข้างล่าง) — ให้ถามทั้ง 2 ข้อ**พร้อมกันในครั้งเดียว** แบบ multiple-choice ที่ user เลือกตอบทีเดียวทั้ง 2 ข้อ (เช่นใช้ AskUserQuestion tool ส่ง 2 questions ในการเรียกครั้งเดียว) ห้ามถามทีละข้อแยกกัน
 
 **ถาม user:** ไฟล์ setup (`instruction.md` กับทั้งโฟลเดอร์ `claude-setup/` ที่มีไฟล์นี้อยู่) ตอนนี้ใช้งานเสร็จแล้ว อยากให้ทำยังไง?
 
