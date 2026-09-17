@@ -7,6 +7,25 @@
 > 4. ถ้าใช่ → ถาม confirm อีกรอบ แล้วค่อยโชว์คำสั่งติดตั้งให้ user เป็นคนรันเอง (Claude ไม่รันเอง เว้นแต่ user ขอให้รันให้)
 >
 > ข้อยกเว้น: **Feature 1** ไม่ทำตามลำดับข้างบน — โชว์คำสั่งติดตั้งไปพร้อม explanation ในข้อความเดียวเลย ไม่ต้องถามก่อนว่าจะติดตั้งไหม ไม่ต้อง confirm ซ้ำ (ดูรายละเอียดใน section ของมันเอง)
+>
+> คุยกับ user เป็น**ภาษาไทย**ตลอด installer นี้ (ยกเว้นชื่อไฟล์/คำสั่ง/code block ที่ต้องคงเป็นภาษาอังกฤษตามจริง)
+
+## Step 0: Vault Name
+
+**อธิบายให้ user ฟัง พร้อมโชว์ตัวอย่างคำสั่งในข้อความเดียวกัน:**
+
+ชื่อโฟลเดอร์นี้ (ชื่อปัจจุบัน: ดูจากชื่อโฟลเดอร์จริง) คือชื่อ vault ที่ Obsidian ใช้จริง และ skill บางตัวใน Feature 2 (`/daily-report` ฯลฯ) จะฝัง path/vault name นี้ไว้ตอนติดตั้ง — ถ้าอยากเปลี่ยนชื่อ vault ควร rename **ก่อน** setup ต่อ
+
+**ถาม user:** อยาก rename ไหม?
+
+- **ไม่** → ไปต่อ Feature 1 ได้เลย
+- **ใช่** → บอก user ให้ออกจาก session นี้ก่อน แล้ว rename โฟลเดอร์เอง (Claude ไม่รันให้ เพราะจะทำให้ path ของ session ปัจจุบันหลุด) ตัวอย่างคำสั่ง:
+
+  ```
+  mv <path เดิม> <path ใหม่ที่มีชื่อโฟลเดอร์ที่ต้องการ>
+  ```
+
+  แล้วเปิด Claude Code ใหม่จาก path ใหม่ พิมพ์ `start setup` อีกครั้งเพื่อ resume ต่อ
 
 ## Feature 1: Obsidian Skill (by Obsidian's CEO)
 
@@ -29,7 +48,7 @@ vault นี้ใช้ skill ชุดนี้อยู่แล้ว — no
 /plugin install obsidian@obsidian-skills
 ```
 
-หลังติดตั้งเสร็จ Claude Code จะเขียน `enabledPlugins` ลง `.claude/settings.json` ของ vault นี้ให้อัตโนมัติ — commit ไฟล์นั้นไว้ด้วยเพื่อให้คนอื่นที่ clone repo ต่อได้ enable เหมือนกัน
+หลังติดตั้งเสร็จ Claude Code จะเขียน `enabledPlugins` ลง `.claude/settings.json` ของ vault นี้ให้อัตโนมัติ
 
 **ถาม user:** อยากไปต่อ feature ถัดไปไหม?
 
@@ -43,20 +62,26 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
 - `/weekly-report` — รวบรวม daily report ของสัปดาห์นี้ สรุปเป็น bullet สั้นๆ พร้อมเอาไปพูดในที่ประชุม
 - `/monthly-report` — รวบรวม daily report ทั้งเดือน สรุปเป็น draft ให้หัวข้อ ไม่บีบเนื้อหาแรงเท่า weekly เพราะเป็น raw material ให้ user เอาไปเรียบเรียงต่อเอง
 
-ทั้ง 3 ตัวพึ่ง `obsidian` CLI (ต้องเปิด Obsidian อยู่ตอนรัน) และพึ่ง template `daily_report.md` ใน `_Templates/` สำหรับตัว `/daily-report`
+ทั้ง 3 ตัวพึ่ง `obsidian` CLI (ต้องเปิด Obsidian อยู่ตอนรัน) และ `/daily-report` พึ่ง Obsidian Templates core plugin ด้วย (ต้อง enable ไว้ และมี template `daily_report.md` อยู่ใน template folder ที่ตั้งไว้)
 
-**เช็ค prerequisite ก่อนถาม install:** รัน `which obsidian` หรือ `obsidian version` ดูก่อนว่ามี CLI พร้อมใช้ไหม
+**เช็ค prerequisite ก่อนถาม install:**
 
-- **ไม่มี** → ชี้ user ไปทำตาม "Optional: Obsidian CLI" ใน `instruction.md` (หมวด Prerequisites) ก่อน แล้วค่อยกลับมาเช็คซ้ำ (`which obsidian`) ก่อนไปต่อ
+1. รัน `which obsidian` หรือ `obsidian version` ดูก่อนว่ามี CLI พร้อมใช้ไหม
+   - **ไม่มี** → ชี้ user ไปทำตาม "Optional: Obsidian CLI" ใน `instruction.md` (หมวด Prerequisites) ก่อน แล้วค่อยกลับมาเช็คซ้ำ (`which obsidian`) ก่อนไปต่อ
+2. เช็คว่า Templates core plugin เปิดอยู่ไหมและตั้ง folder ไว้หรือยัง — ดูจาก `.obsidian/core-plugins.json` (ต้องมี `"templates": true`) และ `.obsidian/templates.json` (ต้องมี field `folder` เช่น `{"folder": "_Templates"}`)
+   - **ครบทั้งคู่แล้ว** → เก็บค่า `folder` ไว้ใช้ใน step ติดตั้งข้างล่าง (แทนที่ path `_Templates/` ที่ hardcode ไว้)
+   - **ไม่ครบ (ปิดอยู่ หรือไม่มี `folder`)** → บอก user ว่า Claude แก้ 2 ไฟล์นี้ให้เองได้ (เทียบเท่า user เข้า Settings → Core plugins → เปิด Templates → ตั้ง "Template folder location" เป็น `_Templates`) **ถามก่อนว่าให้ Claude แก้ให้เลยไหม**:
+     - **ใช่** → set `"templates": true` ใน `.obsidian/core-plugins.json` และเขียน `{"folder": "_Templates"}` ใน `.obsidian/templates.json` (สร้างไฟล์ถ้ายังไม่มี) แล้วบอก user reload Obsidian (หรือปิดเปิดใหม่) เพื่อให้เห็นผล จากนั้นไปต่อ โดยใช้ `_Templates` เป็นค่า `folder`
+     - **ไม่** → ชี้ user ไปตั้งเองผ่าน Settings ก่อน แล้วกลับมาเช็คซ้ำ (ขั้น 2) ก่อนไปต่อ
 
 **ถาม user:** อยากติดตั้งไหม?
 
 - **ไม่** → ข้ามไป feature ถัดไป
-- **ใช่** → confirm อีกครั้งพร้อมบอกรายละเอียดว่าจะทำอะไร เช่น "ยืนยันติดตั้ง Report Skills ใช่ไหม? จะ copy skill 3 ตัว (daily-report, weekly-report, monthly-report) จาก `claude-setup/skills/` ไปติดตั้งเป็น local-level skill ใน `.claude/skills/` ของ vault นี้ พร้อม copy template `daily_report.md` ไปที่ `_Templates/` ด้วย" แล้วทำตามนี้ (ไม่ต้องโชว์คำสั่งให้ user รันเอง เพราะเป็นแค่การ copy ไฟล์ + แก้ path ในไฟล์ ทำให้ user เลยได้):
+- **ใช่** → confirm อีกครั้งพร้อมบอกรายละเอียดว่าจะทำอะไร เช่น "ยืนยันติดตั้ง Report Skills ใช่ไหม? จะ copy skill 3 ตัว (daily-report, weekly-report, monthly-report) จาก `claude-setup/skills/` ไปติดตั้งเป็น local-level skill ใน `.claude/skills/` ของ vault นี้ พร้อม copy template `daily_report.md` ไปที่ template folder ของ vault (`<folder จาก templates.json>`) ด้วย" แล้วทำตามนี้ (ไม่ต้องโชว์คำสั่งให้ user รันเอง เพราะเป็นแค่การ copy ไฟล์ + แก้ path ในไฟล์ ทำให้ user เลยได้):
 
   1. หา vault path ปัจจุบัน (`pwd` หรือ root ของ vault ที่ user เปิดอยู่) และ vault name (ปกติคือชื่อโฟลเดอร์ vault — ถ้าไม่ชัวร์ให้ถาม user)
   2. Copy 3 ไฟล์นี้จาก `claude-setup/skills/<name>/SKILL.md` ไปยัง `.claude/skills/<name>/SKILL.md` (daily-report, weekly-report, monthly-report) — ระหว่าง copy ให้แทนที่ `__VAULT_PATH__` ด้วย vault path จริง และ `__VAULT_NAME__` ด้วย vault name จริงในทุกจุดที่เจอ
-  3. Copy `claude-setup/templates/daily_report.md` ไปยัง `_Templates/daily_report.md` (ไฟล์นี้ไม่มี path ต้องแทน copy ตรงๆ ได้เลย)
+  3. Copy `claude-setup/templates/daily_report.md` ไปยัง `<folder จาก .obsidian/templates.json>/daily_report.md` (ไม่ hardcode เป็น `_Templates/` — ใช้ค่าที่เช็คไว้ใน prerequisite ข้างบน)
   4. บอก user ว่าเสร็จแล้ว ลองพิมพ์ `/daily-report` ได้เลย
 
   หมายเหตุ: staged source ใน `claude-setup/skills/` และ `claude-setup/templates/` เก็บไว้เป็น reference ต่อ ไม่ต้องลบทิ้งหลังติดตั้ง
