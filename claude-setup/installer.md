@@ -36,7 +36,7 @@ Skill ชุดนี้เขียนโดย Steph Ango (kepano) — CEO ข
 - `obsidian-markdown` — เขียน/แก้ syntax เฉพาะของ Obsidian (wikilink, callout, properties, embed)
 - `obsidian-bases` — สร้าง/แก้ไฟล์ `.base`
 - `json-canvas` — สร้าง/แก้ไฟล์ `.canvas`
-- `obsidian-cli` — คุยกับ Obsidian ที่เปิดอยู่ผ่าน `obsidian` CLI (ต้องลง CLI แยกต่างหาก — ดู "Optional: Obsidian CLI" ใน `instruction.md`)
+- `obsidian-cli` — คุยกับ Obsidian ที่เปิดอยู่ผ่าน `obsidian` CLI (ต้องลง CLI แยกต่างหาก — ดู "Optional: Obsidian CLI" ใน `Instruction.md`)
 - `defuddle` — ดึง markdown สะอาดๆ จากหน้าเว็บ ประหยัด token แทนการ fetch ตรงๆ
 
 vault นี้ใช้ skill ชุดนี้อยู่แล้ว — note, `.base`, `.canvas` ตัวอย่างทั้งหมดถูกสร้างด้วย skill พวกนี้
@@ -75,7 +75,7 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
 
 **เช็ค prerequisite ก่อนถาม install:** รัน `which obsidian` หรือ `obsidian version` ดูก่อนว่ามี CLI พร้อมใช้ไหม
 
-- **ไม่มี** → ชี้ user ไปทำตาม "Optional: Obsidian CLI" ใน `instruction.md` (หมวด Prerequisites) ก่อน แล้วค่อยกลับมาเช็คซ้ำ (`which obsidian`) ก่อนไปต่อ
+- **ไม่มี** → ชี้ user ไปทำตาม "Optional: Obsidian CLI" ใน `Instruction.md` (หมวด Prerequisites) ก่อน แล้วค่อยกลับมาเช็คซ้ำ (`which obsidian`) ก่อนไปต่อ
 
 **ถาม user:** อยากติดตั้งไหม?
 
@@ -97,7 +97,7 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
 
 **สำคัญ:** ขั้นนี้มี 2 คำถามให้ user ตอบ (setup files + example data ข้างล่าง) — ให้ถามทั้ง 2 ข้อ**พร้อมกันในครั้งเดียว** แบบ multiple-choice ที่ user เลือกตอบทีเดียวทั้ง 2 ข้อ (เช่นใช้ AskUserQuestion tool ส่ง 2 questions ในการเรียกครั้งเดียว) ห้ามถามทีละข้อแยกกัน
 
-**ถาม user:** ไฟล์ setup (`instruction.md` กับทั้งโฟลเดอร์ `claude-setup/` ที่มีไฟล์นี้อยู่) ตอนนี้ใช้งานเสร็จแล้ว อยากให้ทำยังไง?
+**ถาม user:** ไฟล์ setup (`Instruction.md` กับทั้งโฟลเดอร์ `claude-setup/` ที่มีไฟล์นี้อยู่) ตอนนี้ใช้งานเสร็จแล้ว อยากให้ทำยังไง?
 
 1. **ลบทิ้ง** — เอาออกจาก vault ให้สะอาด
 2. **ย้ายไป `_Archives/`** — เก็บไว้อ้างอิงย้อนหลังได้ (เช่น กลับมาดูว่า feature ไหนติดตั้งไปแล้วบ้าง)
@@ -105,8 +105,8 @@ Skill ส่วนตัว 3 ตัวสำหรับเขียนรา�
 
 ทำตามที่ user เลือก:
 
-- ตัวเลือก 1: ลบ `instruction.md` และโฟลเดอร์ `claude-setup/` ทั้งหมด
-- ตัวเลือก 2: ย้าย `instruction.md` และโฟลเดอร์ `claude-setup/` (ทั้งโฟลเดอร์) เข้าไปใน `_Archives/`
+- ตัวเลือก 1: ลบ `Instruction.md` และโฟลเดอร์ `claude-setup/` ทั้งหมด
+- ตัวเลือก 2: ย้าย `Instruction.md` และโฟลเดอร์ `claude-setup/` (ทั้งโฟลเดอร์) เข้าไปใน `_Archives/`
 - ตัวเลือก 3: ตามที่ user ระบุ
 
 ไม่ต้องถามเรื่อง `CLAUDE.md` ทั้งไฟล์ — ไฟล์นั้นอธิบายโครงสร้าง vault ให้ Claude อ่านต่อไปเรื่อยๆ ไม่ใช่ไฟล์ setup ชั่วคราว เก็บไว้เหมือนเดิม แต่ให้ลบเฉพาะ block "On first message in a fresh session" (อยู่บนสุดของ `CLAUDE.md` พูดถึง `claude-setup/`) ออกไปด้วย เพราะหลัง cleanup โฟลเดอร์นั้นไม่มีอยู่แล้ว ทิ้ง note ไว้จะชี้ไปที่ที่ไม่มีอยู่จริง
